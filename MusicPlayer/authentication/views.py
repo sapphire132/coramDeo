@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserLoginForm, RegistrationForm
+from django.views.decorators.csrf import  csrf_exempt
 
 
 # Create your views here.
+@csrf_exempt 
 def login_request(request):
     title = "Login"
     form = UserLoginForm(request.POST or None)
