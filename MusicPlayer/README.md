@@ -1,1 +1,1 @@
-working on it.
+django based music streaming platform made at DEC
