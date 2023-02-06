@@ -15,7 +15,7 @@ def index(request):
         recent_songs_unsorted = Song.objects.filter(id__in=recent_id,recent__user=request.user)
         recent_songs = list()
         for id in recent_id:
-            recent_songs.append(recent_songs_unsorted.filter(id=id))
+            recent_songs.append(recent_songs_unsorted.get(id=id))
     else:
         recent = None
         recent_songs = None
@@ -81,7 +81,7 @@ def amharic_songs(request):
         last_played_id = last_played_list[0]['song_id']
         last_played_song = Song.objects.get(id=last_played_id)
     else:
-        last_played_song = Song.objects.get(id=7)
+        last_played_song = Song.objects.get(id=1)
 
     query = request.GET.get('q')
 
