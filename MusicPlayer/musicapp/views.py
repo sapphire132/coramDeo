@@ -73,7 +73,7 @@ def index(request):
 
 def amharic_songs(request):
 
-    amharic_songs = Song.objects.filter(language='amharic')
+    amharic_songs = Song.objects.filter(language='Amharic')
 
     #Last played song
     last_played_list = list(Recent.objects.values('song_id').order_by('-id'))
@@ -84,13 +84,17 @@ def amharic_songs(request):
         last_played_song = Song.objects.get(id=1)
 
     query = request.GET.get('q')
+    print(query)
 
     if query:
         amharic_songs = Song.objects.filter(Q(name__icontains=query)).distinct()
         context = {'amharic_songs': amharic_songs}
         return render(request, 'musicapp/amharic_songs.html', context)
+    
+    
 
     context = {'amharic_songs':amharic_songs,'last_played':last_played_song}
+    print(amharic_songs.first())
     return render(request, 'musicapp/amharic_songs.html',context=context)
 
 
